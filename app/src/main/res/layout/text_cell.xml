@@ -12,7 +12,7 @@
                 type="com.nikb7.soleadapter.OnRecyclerItemClickListener"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -39,5 +39,5 @@
                 android:onClick="@{(v)->lis.onRecyclerInnerItemClick(v,obj)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="Button"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

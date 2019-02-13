@@ -1,19 +1,16 @@
 package com.nikb7.soleadapter
 
-
-import android.support.annotation.Nullable
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.Nullable
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
-import kotlin.reflect.KClass
 
 open class SoleAdapter(
-    private val viewMap: Map<KClass<out StableId>, Int>,
+    private val viewMap: Map<Class<out StableId>, Int>,
     private val listener: OnRecyclerItemClickListener? = null,
     private val listEndView: Pair<StableId, Int>? = null,
     private val emptyListView: Pair<StableId, Int>? = null
-) :
-    RecyclerView.Adapter<RecyclerViewHolder>() {
+) : RecyclerView.Adapter<RecyclerViewHolder>() {
 
     companion object {
         private const val TAG = "SoleAdapter"
@@ -54,7 +51,7 @@ open class SoleAdapter(
         else -> items
     }
 
-    protected fun getAssignedViewType(position: Int) = viewMap[items[position]::class]
+    protected fun getAssignedViewType(position: Int) = viewMap[items[position].javaClass]
         ?: throw Exception("View not found for ${items[position]::class}")
 
 

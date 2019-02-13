@@ -1,6 +1,6 @@
 package com.nikb7.soleadapterexample
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity(), OnRecyclerItemClickListener {
         when {
             obj is TextModel -> Toast.makeText(this, obj.text, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onRecyclerItemLongPressed(obj: StableId) {
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

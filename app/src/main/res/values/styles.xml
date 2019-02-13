@@ -18,11 +18,11 @@
     </style>
 
     <style name="LinearRecyclerView" parent="BaseRecyclerView">
-        <item name="layoutManager">android.support.v7.widget.LinearLayoutManager</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
     </style>
 
     <style name="GridRecyclerView" parent="BaseRecyclerView">
-        <item name="layoutManager">android.support.v7.widget.GridLayoutManager</item>
+        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
         <item name="spanCount">2</item>
     </style>
 
