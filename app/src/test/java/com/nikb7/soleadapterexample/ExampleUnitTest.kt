@@ -1,4 +1,4 @@
-package com.nikhil.bansal.soleadapterexample
+package com.nikb7.soleadapterexample
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.nikhil.bansal.soleadapter
+package com.nikb7.soleadapter
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding

@@ -1,8 +1,9 @@
-package com.nikhil.bansal.soleadapter
+package com.nikb7.soleadapter
 
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.nikhil.bansal.soleadapter.BR
 
 open class RecyclerViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 

@@ -1,4 +1,4 @@
-package com.nikhil.bansal.soleadapterexample
+package com.nikb7.soleadapterexample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
