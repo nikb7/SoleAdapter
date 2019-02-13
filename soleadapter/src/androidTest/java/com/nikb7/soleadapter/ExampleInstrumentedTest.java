@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.nikhil.bansal.soleadapter.test", appContext.getPackageName());
+        assertEquals("com.nikb7.soleadapter.test", appContext.getPackageName());
     }
 }

@@ -3,7 +3,7 @@ package com.nikb7.soleadapter
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.nikhil.bansal.soleadapter.BR
+import com.nikb7.soleadapter.BR
 
 open class RecyclerViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -15,6 +15,10 @@ open class RecyclerViewHolder(private val binding: ViewDataBinding) : RecyclerVi
         binding.setVariable(BR.lis, listenerRecycler)
         binding.executePendingBindings()
         itemView.setOnClickListener { listenerRecycler?.onRecyclerItemClick(obj) }
+        itemView.setOnLongClickListener {
+            listenerRecycler?.onRecyclerItemLongPressed(obj)
+            false
+        }
     }
 }
 
@@ -28,4 +32,5 @@ interface StableId {
 interface OnRecyclerItemClickListener {
     fun onRecyclerItemClick(obj: StableId)
     fun onRecyclerInnerItemClick(view: View, obj: StableId)
+    fun onRecyclerItemLongPressed(obj: StableId)
 }
