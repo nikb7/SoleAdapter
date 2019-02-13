@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--RecyclerView Styles-->
+    <style name="BaseRecyclerView">
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:splitMotionEvents">false</item>
+    </style>
+
+    <style name="LinearRecyclerView" parent="BaseRecyclerView">
+        <item name="layoutManager">android.support.v7.widget.LinearLayoutManager</item>
+    </style>
+
+    <style name="GridRecyclerView" parent="BaseRecyclerView">
+        <item name="layoutManager">android.support.v7.widget.GridLayoutManager</item>
+        <item name="spanCount">2</item>
+    </style>
+
 </resources>

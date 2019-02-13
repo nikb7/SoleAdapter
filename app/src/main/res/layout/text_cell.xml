@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="obj"
+                type="com.nikb7.soleadapterexample.TextModel"/>
+
+        <variable
+                name="lis"
+                type="com.nikb7.soleadapter.OnRecyclerItemClickListener"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/deleteBtn"
+                tools:text="@tools:sample/cities"
+                android:text="@{obj.text}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+        <Button
+                android:id="@+id/deleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{(v)->lis.onRecyclerInnerItemClick(v,obj)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Button"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>
