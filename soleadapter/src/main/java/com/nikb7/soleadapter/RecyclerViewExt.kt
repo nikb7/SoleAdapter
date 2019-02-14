@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 fun RecyclerView.addHorizontalDivider(@DrawableRes drawableInt: Int) {
-    val itemDecor = androidx.recyclerview.widget.DividerItemDecoration(
+    val itemDecor = DividerItemDecoration(
         context,
-        androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+        DividerItemDecoration.VERTICAL
     )
     itemDecor.setDrawable(ContextCompat.getDrawable(context, drawableInt)!!)
     addItemDecoration(itemDecor)
