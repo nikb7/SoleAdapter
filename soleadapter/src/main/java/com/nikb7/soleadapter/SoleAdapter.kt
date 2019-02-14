@@ -11,17 +11,17 @@ open class SoleAdapter(
     private val listEndView: Pair<StableId, Int>? = null,
     private val emptyListView: Pair<StableId, Int>? = null
 ) : RecyclerView.Adapter<RecyclerViewHolder>() {
-    
+
     init {
         val mViewMap = when {
             listEndView != null && emptyListView != null -> viewMap.plus(
                 mapOf(
-                    listEndView.first::class.java to listEndView.second,
-                    emptyListView.first::class.java to emptyListView.second
+                    listEndView.first.javaClass to listEndView.second,
+                    emptyListView.first.javaClass to emptyListView.second
                 )
             )
-            listEndView != null -> viewMap.plus(listEndView.first::class.java to listEndView.second)
-            emptyListView != null -> viewMap.plus(emptyListView.first::class.java to emptyListView.second)
+            listEndView != null -> viewMap.plus(listEndView.first.javaClass to listEndView.second)
+            emptyListView != null -> viewMap.plus(emptyListView.first.javaClass to emptyListView.second)
             else -> null
         }
         mViewMap?.let {
