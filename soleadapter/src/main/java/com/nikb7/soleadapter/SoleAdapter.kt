@@ -6,24 +6,26 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 
 open class SoleAdapter(
-    private val viewMap: Map<Class<out StableId>, Int>,
+    private var viewMap: Map<Class<out StableId>, Int>,
     private val listener: OnRecyclerItemClickListener? = null,
     private val listEndView: Pair<StableId, Int>? = null,
     private val emptyListView: Pair<StableId, Int>? = null
 ) : RecyclerView.Adapter<RecyclerViewHolder>() {
-
-    companion object {
-        private const val TAG = "SoleAdapter"
-    }
-
+    
     init {
-        viewMap.apply {
-            listEndView?.let {
-                plus(it.first::class.java to it.second)
-            }
-            emptyListView?.let {
-                plus(it.first::class.java to it.second)
-            }
+        val mViewMap = when {
+            listEndView != null && emptyListView != null -> viewMap.plus(
+                mapOf(
+                    listEndView.first::class.java to listEndView.second,
+                    emptyListView.first::class.java to emptyListView.second
+                )
+            )
+            listEndView != null -> viewMap.plus(listEndView.first::class.java to listEndView.second)
+            emptyListView != null -> viewMap.plus(emptyListView.first::class.java to emptyListView.second)
+            else -> null
+        }
+        mViewMap?.let {
+            viewMap = it
         }
     }
 
