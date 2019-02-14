@@ -1,31 +1,23 @@
 package com.nikb7.soleadapter
 
+import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import android.view.ViewGroup
 
 open class SoleAdapter(
-    private var viewMap: Map<Class<out StableId>, Int>,
+    private val viewMap: MutableMap<Class<out StableId>, Int>,
     private val listener: OnRecyclerItemClickListener? = null,
     private val listEndView: Pair<StableId, Int>? = null,
     private val emptyListView: Pair<StableId, Int>? = null
 ) : RecyclerView.Adapter<RecyclerViewHolder>() {
 
     init {
-        val mViewMap = when {
-            listEndView != null && emptyListView != null -> viewMap.plus(
-                mapOf(
-                    listEndView.first.javaClass to listEndView.second,
-                    emptyListView.first.javaClass to emptyListView.second
-                )
-            )
-            listEndView != null -> viewMap.plus(listEndView.first.javaClass to listEndView.second)
-            emptyListView != null -> viewMap.plus(emptyListView.first.javaClass to emptyListView.second)
-            else -> null
+        listEndView?.let {
+            viewMap[it.first.javaClass] = it.second
         }
-        mViewMap?.let {
-            viewMap = it
+        emptyListView?.let {
+            viewMap[it.first.javaClass] = it.second
         }
     }
 
