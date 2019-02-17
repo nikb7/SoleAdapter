@@ -1,25 +1,18 @@
 package com.nikb7.soleadapter
 
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 open class SoleAdapter(
     private val viewMap: MutableMap<Class<out StableId>, Int>,
-    private val listener: OnRecyclerItemClickListener? = null,
-    private val listEndView: Pair<StableId, Int>? = null,
-    private val emptyListView: Pair<StableId, Int>? = null
+    private val listener: OnRecyclerItemClickListener? = null
 ) : RecyclerView.Adapter<RecyclerViewHolder>() {
 
-    init {
-        listEndView?.let {
-            viewMap[it.first.javaClass] = it.second
-        }
-        emptyListView?.let {
-            viewMap[it.first.javaClass] = it.second
-        }
-    }
+    private var listEndObj: StableId? = null
+    private var emptyListObj: StableId? = null
 
     protected var items = mutableListOf<StableId>()
 
@@ -40,8 +33,8 @@ open class SoleAdapter(
     override fun getItemCount() = items.size
 
     private fun listItemHandler(items: List<StableId>) = when {
-        items.isEmpty() && emptyListView != null -> listOf(emptyListView.first)
-        listEndView != null -> items.plus(listEndView.first)
+        items.isEmpty() && emptyListObj != null -> listOf(emptyListObj!!)
+        listEndObj != null -> items.plus(listEndObj!!)
         else -> items
     }
 
@@ -71,8 +64,30 @@ open class SoleAdapter(
         notifyDataSetChanged()
     }
 
+    fun addItem(item: StableId, pos: Int = itemCount) {
+        if (pos >= 0) {
+            items.add(pos, item)
+            submitList(items)
+        }
+    }
 
+    fun addItems(items: List<StableId>) {
+        val initSize = itemCount
+        this.items.addAll(items)
+        submitList(this.items)
+    }
+    
     fun getListItems() = items
+
+    fun setEmptyListView(obj: StableId, @LayoutRes layoutId: Int) = apply {
+        emptyListObj = obj
+        viewMap[obj.javaClass] = layoutId
+    }
+
+    fun setListEndView(obj: StableId, @LayoutRes layoutId: Int) = apply {
+        listEndObj = obj
+        viewMap[obj.javaClass] = layoutId
+    }
 
 
 }
