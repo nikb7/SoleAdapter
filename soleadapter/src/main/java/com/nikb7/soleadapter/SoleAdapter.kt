@@ -66,7 +66,7 @@ open class SoleAdapter(
 
     fun addItem(item: StableId, pos: Int = itemCount) {
         if (pos >= 0) {
-            if (items.isEmpty()) {
+            if (items.isEmpty() || (emptyListObj != null && items[0] == emptyListObj)) {
                 submitList(listOf(item))
             } else {
                 items.add(pos, item)
@@ -78,7 +78,7 @@ open class SoleAdapter(
     fun addItems(items: List<StableId>) {
         if (items.isNotEmpty()) {
             val initSize = itemCount
-            if (this.items.isEmpty()) {
+            if (this.items.isEmpty() || (emptyListObj != null && items[0] == emptyListObj)) {
                 submitList(items)
             } else {
                 this.items.addAll(items)
