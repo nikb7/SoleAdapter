@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 open class SoleAdapter(
-    private val viewMap: MutableMap<Class<out StableId>, Int>,
+    protected val viewMap: MutableMap<Class<out StableId>, Int>,
     private val listener: OnRecyclerItemClickListener? = null
 ) : RecyclerView.Adapter<RecyclerViewHolder>() {
 
@@ -66,17 +66,27 @@ open class SoleAdapter(
 
     fun addItem(item: StableId, pos: Int = itemCount) {
         if (pos >= 0) {
-            items.add(pos, item)
-            submitList(items)
+            if (items.isEmpty()) {
+                submitList(listOf(item))
+            } else {
+                items.add(pos, item)
+                notifyItemInserted(pos)
+            }
         }
     }
 
     fun addItems(items: List<StableId>) {
-        val initSize = itemCount
-        this.items.addAll(items)
-        submitList(this.items)
+        if (items.isNotEmpty()) {
+            val initSize = itemCount
+            if (this.items.isEmpty()) {
+                submitList(items)
+            } else {
+                this.items.addAll(items)
+                notifyItemRangeInserted(initSize, items.size)
+            }
+        }
     }
-    
+
     fun getListItems() = items
 
     fun setEmptyListView(obj: StableId, @LayoutRes layoutId: Int) = apply {
