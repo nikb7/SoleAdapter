@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.nikb7.soleadapter.BR
 
-open class RecyclerViewHolder(private val binding: ViewDataBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root) {
+open class RecyclerViewHolder(val binding: ViewDataBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root) {
 
     /**NOTE use only obj, lis as variable names inside xml files
      * obj: it is the class linked to the view
